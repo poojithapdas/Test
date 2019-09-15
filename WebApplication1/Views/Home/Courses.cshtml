@@ -1,0 +1,28 @@
+﻿<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //Call EmpDetails jsonResult Method
+        $.getJSON("Home/CourseDetails",
+        function (json) {
+        var tr;
+        //Append each row to html table
+        for (var i = 0; i < json.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + json[i].Title + "</td>");
+                tr.append("<td>" + json[i].Credits + "</td>");
+                tr.append("<td>" + json[i].Description + "</td>");
+                $('table').append(tr);
+            }
+        });
+    });
+</script>
+<table class="table table-bordered table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Credits</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>

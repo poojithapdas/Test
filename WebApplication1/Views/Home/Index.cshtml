@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebApplication1.Models.CoursesViewModel>
+@{
+    ViewBag.Title = "English Department";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 5);
+    }
+
+
+<style>
+     .table
+     {
+         margin: 4px;
+         border-collapse: collapse;
+         width: 1200px;
+        
+    }
+
+     .header
+     {
+         background-color: salmon;
+         font-weight: bold;
+         color: burlywood;
+        
+    }
+
+     .table th, .table td
+     {
+         border: 2px solid black;
+         padding: 5px;
+        
+    }
+    #hidden {
+  display: none;
+}
+#visible:hover #hidden {
+  display: block;
+  transition-delay: 20s; /* delays for 2 second */
+-webkit-transition-delay: 1s;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+    
+</style>
+
+<table cellspacing="0" cellpadding="0">
+    <tr>
+        <td  style="padding-top:20px; padding-bottom:20px; padding-right:20px">
+            <img src="/Content/Images/testimage.png" width="400" height="200" />
+        </td>
+
+        <td style="align-content:center; vertical-align:top">
+            <h2> Welcome to the English Department! </h2><br />
+            Sixty faculty members with Master’s or Doctorate degrees in English or closely related fields teach in our department. We offer approximately 20 sections of developmental writing and reading courses, 45 of transfer level writing, and 10 of literature each quarter. We also offer online and hybrid courses and participate in interdisciplinary and linked courses each quarter.
+        </td>
+    </tr>
+</table>
+<h2>Courses</h2>
+<ul>
+    @foreach (var item in Model)
+    {
+    <li id="visible">
+        <a href="javascript:void(0);" class="getProducts"> @Html.DisplayFor(modelItem => item.Title)  </a>
+       
+        @Html.DisplayNameFor(model => model.Credits): @Html.DisplayFor(modelItem => item.Credits)  <br />
+        <ul id="hidden">
+            <li>
+                @Html.DisplayFor(modelItem => item.Description)
+            </li>
+        </ul>
+    </li>
+    
+    }
+</ul>
